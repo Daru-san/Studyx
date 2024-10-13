@@ -7,19 +7,19 @@
 
     <fragment
         android:id="@+id/nav_home"
-        android:name="com.daru.studyx.ui.home.HomeFragment"
-        android:label="@string/menu_home"
-        tools:layout="@layout/fragment_home" />
+        android:name="com.daru.studyx.ui.dashboard.dashboardFragment"
+        android:label="@string/menu_dashboard"
+        tools:layout="@layout/fragment_dashboard" />
 
     <fragment
-        android:id="@+id/nav_gallery"
-        android:name="com.daru.studyx.ui.gallery.GalleryFragment"
-        android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
+        android:id="@+id/nav_school_schedule"
+        android:name="com.daru.studyx.ui.schoolSchedule.schoolTimetableFragment"
+        android:label="@string/menu_school"
+        tools:layout="@layout/fragment_school_timetable" />
 
     <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="com.daru.studyx.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+        android:id="@+id/nav_exam"
+        android:name="com.daru.studyx.ui.examSchedule.examScheduleFragment"
+        android:label="@string/menu_school"
+        tools:layout="@layout/fragment_exam" />
 </navigation>
