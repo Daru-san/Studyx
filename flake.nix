@@ -21,10 +21,26 @@
           inherit system;
           config = {
             allowUnfree = true;
-            android_sdk.accept_license = true;
+            android_sdk = {
+              accept_license = true;
+            };
           };
         };
+        buildToolsVersion = "34.0.0";
         androidComposition = pkgs.androidenv.composeAndroidPackages {
+          buildToolsVersions = [
+            buildToolsVersion
+            "28.0.3"
+          ];
+          platformVersions = [
+            "28"
+            "29"
+            "30"
+            "31"
+            "32"
+            "33"
+            "34"
+          ];
           includeEmulator = false;
           includeSources = false;
           includeSystemImages = false;
@@ -40,31 +56,20 @@
             "extras;google;gcm"
           ];
         };
-        flutter-android-studio = pkgs.symlinkJoin {
-          name = "flutterAndroidStudio";
-          paths = with pkgs; [
-            pkgs.android-studio
-            pkgs.flutter.unwrapped
-            dart
-            gnumake
-            check
-            pkg-config
-            glibc
-            android-tools
-            jdk
-            git
-          ];
-        };
+        androidSdk = androidComposition.androidsdk;
       in
       {
         devShells.default = pkgs.mkShell rec {
           ANDROID_HOME = "${androidComposition.androidsdk}/libexec/android-sdk";
           ANDROID_NDK_ROOT = "${ANDROID_HOME}/ndk-bundle";
-          ANDROID_JAVA_HOME = "${pkgs.jdk.home}";
           FLUTTER_SDK = "${pkgs.flutter.unwrapped}";
-          buildInputs = [
-            flutter-android-studio
-            androidComposition.androidsdk
+          JAVA_HOME = pkgs.jdk17;
+          GRADLE_OPTS = "-Dorg.gradle.project.android.aapt2FromMavenOverride=${androidSdk}/libexec/android-sdk/build-tools/${buildToolsVersion}/aapt2";
+          buildInputs = with pkgs; [
+            flutter
+            jdk17
+            android-studio
+            androidSdk
           ];
         };
       }
