@@ -56,7 +56,8 @@
         androidSdk = androidComposition.androidsdk;
       in
       {
-        devShells.default = pkgs.mkShell rec {
+        packages.default = pkgs.callPackage ./nix/package.nix { };
+        devShells.default = pkgs.mkShell {
           ANDROID_AVD_HOME = (toString ./.) + "./android/avd";
           FLUTTER_SDK = "${pkgs.flutter.unwrapped}";
           JAVA_HOME = pkgs.jdk17;
