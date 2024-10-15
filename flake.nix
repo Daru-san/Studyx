@@ -57,8 +57,7 @@
       in
       {
         devShells.default = pkgs.mkShell rec {
-          ANDROID_HOME = "${androidComposition.androidsdk}/libexec/android-sdk";
-          ANDROID_NDK_ROOT = "${ANDROID_HOME}/ndk-bundle";
+          ANDROID_AVD_HOME = (toString ./.) + "./android/avd";
           FLUTTER_SDK = "${pkgs.flutter.unwrapped}";
           JAVA_HOME = pkgs.jdk17;
           GRADLE_OPTS = "-Dorg.gradle.project.android.aapt2FromMavenOverride=${androidSdk}/libexec/android-sdk/build-tools/${buildToolsVersion}/aapt2";
