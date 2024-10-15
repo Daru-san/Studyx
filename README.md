@@ -17,8 +17,8 @@ distant dream right now.
 
 Right now we are at a very early alpha planning phase,
 I hope to expand as time goes on though.
-I am really new to android app development, so
-this will definitely be a challenge. I can't wait!
+I am really new to android app development and flutter,
+so  this will definitely be a challenge. I can't wait!
 
 ## Planned features
 
