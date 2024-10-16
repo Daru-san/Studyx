@@ -9,6 +9,7 @@ void main() {
   });
 }
 
+var currentTheme = ThemeData.dark(useMaterial3: true);
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -17,10 +18,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Studyx',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.greenAccent),
-        useMaterial3: true,
-      ),
+      theme: currentTheme,
       home: const MyHomePage(title: 'Dashboard'),
     );
   }
