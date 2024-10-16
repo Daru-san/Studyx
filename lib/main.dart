@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:window_manager/window_manager.dart';
+import 'package:flutter_settings_ui/flutter_settings_ui.dart';
 
 void main() {
   runApp(const MyApp());
@@ -331,7 +332,39 @@ class AppSettings extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Settings'),
       ),
-      body: const Center(),
+      body: SettingsList(
+        sections: [
+          SettingsSection(
+            title: const Text('Theme'),
+            tiles: [
+              SettingsTile.switchTile(
+                leading: const Icon(Icons.dark_mode),
+                initialValue: true,
+                onToggle: (bool value) {
+                  if (value) {
+                    currentTheme = ThemeData.dark(useMaterial3: true);
+                  } else {
+                    currentTheme = ThemeData.light(useMaterial3: true);
+                  }
+                },
+                title: const Text('Enable Dark theme'),
+              ),
+            ],
+          ),
+          SettingsSection(
+            title: const Text('Advanced'),
+            tiles: [
+              SettingsTile(
+                title: const Text('Backup data'),
+                trailing: TextButton(
+                  onPressed: () {},
+                  child: const Icon(Icons.backup),
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
     );
   }
 }
