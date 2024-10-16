@@ -98,6 +98,14 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             ListTile(
               title: const Text('School Timetable'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const SchoolTimetable(),
+                  ),
+                );
+              },
             ),
             ListTile(
               title: const Text('Exam Timetable'),
@@ -148,6 +156,21 @@ class _MyHomePageState extends State<MyHomePage> {
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
+    );
+  }
+}
+class SchoolTimetable extends StatelessWidget {
+  const SchoolTimetable({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('School Timetable'),
+      ),
+      body: const Center(
+        child: Card(),
+      ),
     );
   }
 }
