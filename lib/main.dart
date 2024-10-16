@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.greenAccent),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Studyx Dashboard'),
+      home: const MyHomePage(title: 'Dashboard'),
     );
   }
 }
@@ -61,12 +61,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        // TRY THIS: Try changing the color here to a specific color (to
-        // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
-        // change color while the other colors stay the same.
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
         leading: Builder(builder: (context) {
           return IconButton(
@@ -83,14 +78,22 @@ class _MyHomePageState extends State<MyHomePage> {
           children: [
             const DrawerHeader(
               decoration: BoxDecoration(
-                color: Colors.blue,
+                color: Colors.lightBlue,
+                borderRadius: BorderRadius.all(
+                  Radius.circular(10),
+                ),
               ),
-              child: Text('Navigation'),
-            ),
-            const ListTile(
-              title: Text('Dashboard'),
+              child: Text("Navigation"),
             ),
             ListTile(
+              leading: const Icon(Icons.dashboard),
+              title: const Text('Dashboard'),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.school),
               title: const Text('School Timetable'),
               onTap: () {
                 Navigator.push(
@@ -102,6 +105,7 @@ class _MyHomePageState extends State<MyHomePage> {
               },
             ),
             ListTile(
+              leading: const Icon(Icons.schedule),
               title: const Text('Exam Timetable'),
               onTap: () {
                 Navigator.push(
@@ -113,6 +117,7 @@ class _MyHomePageState extends State<MyHomePage> {
               },
             ),
             ListTile(
+              leading: const Icon(Icons.book_online),
               title: const Text('Study Planner'),
               onTap: () {
                 Navigator.push(
@@ -124,48 +129,145 @@ class _MyHomePageState extends State<MyHomePage> {
               },
             ),
             ListTile(
-              title: const Text('Close this drawer'),
+              leading: const Icon(Icons.settings),
+              title: const Text('Settings'),
               onTap: () {
-                Navigator.pop(context);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const AppSettings(),
+                  ),
+                );
               },
             ),
           ],
         ),
       ),
       body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          //
-          // TRY THIS: Invoke "debug painting" (choose the "Toggle Debug Paint"
-          // action in the IDE, or press "p" in the console), to see the
-          // wireframe for each widget.
-          mainAxisAlignment: MainAxisAlignment.center,
+        child: ListView(
+          shrinkWrap: false,
+          padding: EdgeInsets.zero,
           children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
+            Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                const ListTile(
+                  leading: Icon(Icons.topic),
+                  title: Text('Current Topics'),
+                  tileColor: Colors.blue,
+                ),
+                ListView(
+                  padding: const EdgeInsets.all(8),
+                  shrinkWrap: true,
+                  children: <Widget>[
+                    Card(
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: <Widget>[
+                          const ListTile(
+                            leading: Icon(Icons.article),
+                            title: Text('Trigonometry'),
+                            subtitle:
+                                Text('Trigonometric functions and equations'),
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              TextButton(
+                                child: const Text('Study'),
+                                onPressed: () {},
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ],
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
+            Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                const ListTile(
+                  leading: Icon(Icons.subject),
+                  title: Text('Upcoming papers'),
+                  tileColor: Colors.grey,
+                ),
+                ListView(
+                  padding: const EdgeInsets.all(8),
+                  shrinkWrap: true,
+                  children: <Widget>[
+                    Card(
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: <Widget>[
+                          const ListTile(
+                            leading: Icon(Icons.article),
+                            title: Text('Math Paper 2'),
+                            subtitle: Text('11 November 2024'),
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              TextButton(
+                                child: const Text('View'),
+                                onPressed: () {},
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                    Card(
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: <Widget>[
+                          const ListTile(
+                            leading: Icon(Icons.article),
+                            title: Text('Physics Paper 1'),
+                            subtitle: Text('14 November 2024'),
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              TextButton(
+                                child: const Text('View'),
+                                onPressed: () {},
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                    Card(
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: <Widget>[
+                          const ListTile(
+                            leading: Icon(Icons.article),
+                            title: Text('Physics Paper 2'),
+                            subtitle: Text('15 November 2024'),
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              TextButton(
+                                child: const Text('View'),
+                                onPressed: () {},
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ],
             ),
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
@@ -211,9 +313,25 @@ class StudyPlanner extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Study Planner'),
       ),
-      body: const Center(
-        child: Card(),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        tooltip: 'Add Item',
+        child: const Icon(Icons.add),
+      ), // This trailing comma makes auto-formatting nicer for build methods.
+    );
+  }
+}
+
+class AppSettings extends StatelessWidget {
+  const AppSettings({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Settings'),
       ),
+      body: const Center(),
     );
   }
 }
