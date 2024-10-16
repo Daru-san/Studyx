@@ -10,6 +10,7 @@ void main() {
 }
 
 var currentTheme = ThemeData.dark(useMaterial3: true);
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -47,7 +48,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        backgroundColor: Theme.of(context).colorScheme.surfaceContainer,
         title: Text(widget.title),
         leading: Builder(builder: (context) {
           return IconButton(
@@ -62,14 +63,22 @@ class _MyHomePageState extends State<MyHomePage> {
         child: ListView(
           padding: EdgeInsets.zero,
           children: [
-            const DrawerHeader(
-              decoration: BoxDecoration(
-                color: Colors.lightBlue,
-                borderRadius: BorderRadius.all(
-                  Radius.circular(10),
+            SizedBox(
+              height: 100,
+              child: DrawerHeader(
+                decoration: BoxDecoration(
+                  color: Theme.of(context).colorScheme.primaryContainer,
+                  borderRadius: const BorderRadius.all(
+                    Radius.circular(10),
+                  ),
+                ),
+                margin: const EdgeInsets.all(0.0),
+                padding: const EdgeInsets.all(0.0),
+                child: const ListTile(
+                  leading: Icon(Icons.local_library),
+                  title: Text('Studyx'),
                 ),
               ),
-              child: Text("Navigation"),
             ),
             ListTile(
               leading: const Icon(Icons.dashboard),
@@ -129,130 +138,150 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ),
-      body: Center(
-        child: ListView(
-          shrinkWrap: false,
-          padding: EdgeInsets.zero,
-          children: <Widget>[
-            Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: <Widget>[
-                const ListTile(
-                  leading: Icon(Icons.topic),
-                  title: Text('Current Topics'),
-                  tileColor: Colors.blue,
-                ),
-                ListView(
-                  padding: const EdgeInsets.all(8),
-                  shrinkWrap: true,
+      body: Builder(
+        builder: (BuildContext context) {
+          return SizedBox.expand(
+            child: GestureDetector(
+              onPanUpdate: (details) {
+                if (details.delta.dx > 0) {
+                  Scaffold.of(context).openDrawer();
+                }
+                if (details.delta.dx < 0) {
+                  if (Scaffold.of(context).isDrawerOpen) {
+                    Navigator.pop(context);
+                  }
+                }
+              },
+              child: Center(
+                child: ListView(
+                  shrinkWrap: false,
+                  padding: EdgeInsets.zero,
                   children: <Widget>[
-                    Card(
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: <Widget>[
-                          const ListTile(
-                            leading: Icon(Icons.article),
-                            title: Text('Trigonometry'),
-                            subtitle:
-                                Text('Trigonometric functions and equations'),
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              TextButton(
-                                child: const Text('Study'),
-                                onPressed: () {},
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: <Widget>[
+                        ListTile(
+                          leading: const Icon(Icons.topic),
+                          title: const Text('Current Topics'),
+                          tileColor:
+                              Theme.of(context).colorScheme.tertiaryContainer,
+                        ),
+                        ListView(
+                          padding: const EdgeInsets.all(8),
+                          shrinkWrap: true,
+                          children: <Widget>[
+                            Card(
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: <Widget>[
+                                  const ListTile(
+                                    leading: Icon(Icons.article),
+                                    title: Text('Trigonometry'),
+                                    subtitle: Text(
+                                        'Trigonometric functions and equations'),
+                                  ),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: <Widget>[
+                                      TextButton(
+                                        child: const Text('Study'),
+                                        onPressed: () {},
+                                      ),
+                                    ],
+                                  ),
+                                ],
                               ),
-                            ],
-                          ),
-                        ],
-                      ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        ListTile(
+                          leading: const Icon(Icons.subject),
+                          title: const Text('Upcoming papers'),
+                          tileColor:
+                              Theme.of(context).colorScheme.tertiaryContainer,
+                        ),
+                        ListView(
+                          padding: const EdgeInsets.all(8),
+                          shrinkWrap: true,
+                          children: <Widget>[
+                            Card(
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: <Widget>[
+                                  const ListTile(
+                                    leading: Icon(Icons.article),
+                                    title: Text('Math Paper 2'),
+                                    subtitle: Text('11 November 2024'),
+                                  ),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: <Widget>[
+                                      TextButton(
+                                        child: const Text('View'),
+                                        onPressed: () {},
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Card(
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: <Widget>[
+                                  const ListTile(
+                                    leading: Icon(Icons.article),
+                                    title: Text('Physics Paper 1'),
+                                    subtitle: Text('14 November 2024'),
+                                  ),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: <Widget>[
+                                      TextButton(
+                                        child: const Text('View'),
+                                        onPressed: () {},
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Card(
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: <Widget>[
+                                  const ListTile(
+                                    leading: Icon(Icons.article),
+                                    title: Text('Physics Paper 2'),
+                                    subtitle: Text('15 November 2024'),
+                                  ),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: <Widget>[
+                                      TextButton(
+                                        child: const Text('View'),
+                                        onPressed: () {},
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
                     ),
                   ],
                 ),
-              ],
+              ),
             ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                const ListTile(
-                  leading: Icon(Icons.subject),
-                  title: Text('Upcoming papers'),
-                  tileColor: Colors.grey,
-                ),
-                ListView(
-                  padding: const EdgeInsets.all(8),
-                  shrinkWrap: true,
-                  children: <Widget>[
-                    Card(
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: <Widget>[
-                          const ListTile(
-                            leading: Icon(Icons.article),
-                            title: Text('Math Paper 2'),
-                            subtitle: Text('11 November 2024'),
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              TextButton(
-                                child: const Text('View'),
-                                onPressed: () {},
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                    Card(
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: <Widget>[
-                          const ListTile(
-                            leading: Icon(Icons.article),
-                            title: Text('Physics Paper 1'),
-                            subtitle: Text('14 November 2024'),
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              TextButton(
-                                child: const Text('View'),
-                                onPressed: () {},
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                    Card(
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: <Widget>[
-                          const ListTile(
-                            leading: Icon(Icons.article),
-                            title: Text('Physics Paper 2'),
-                            subtitle: Text('15 November 2024'),
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              TextButton(
-                                child: const Text('View'),
-                                onPressed: () {},
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ],
-        ),
+          );
+        },
       ),
     );
   }
