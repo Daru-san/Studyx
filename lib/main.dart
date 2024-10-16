@@ -120,6 +120,14 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             ListTile(
               title: const Text('Study Planner'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const StudyPlanner(),
+                  ),
+                );
+              },
             ),
             ListTile(
               title: const Text('Close this drawer'),
@@ -167,6 +175,7 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
+
 class SchoolTimetable extends StatelessWidget {
   const SchoolTimetable({super.key});
 
@@ -182,6 +191,7 @@ class SchoolTimetable extends StatelessWidget {
     );
   }
 }
+
 class ExamTimetable extends StatelessWidget {
   const ExamTimetable({super.key});
 
@@ -198,3 +208,18 @@ class ExamTimetable extends StatelessWidget {
   }
 }
 
+class StudyPlanner extends StatelessWidget {
+  const StudyPlanner({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Study Planner'),
+      ),
+      body: const Center(
+        child: Card(),
+      ),
+    );
+  }
+}
