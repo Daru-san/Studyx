@@ -109,6 +109,14 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             ListTile(
               title: const Text('Exam Timetable'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const ExamTimetable(),
+                  ),
+                );
+              },
             ),
             ListTile(
               title: const Text('Study Planner'),
@@ -174,3 +182,19 @@ class SchoolTimetable extends StatelessWidget {
     );
   }
 }
+class ExamTimetable extends StatelessWidget {
+  const ExamTimetable({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Exam Timetable'),
+      ),
+      body: const Center(
+        child: Card(),
+      ),
+    );
+  }
+}
+
