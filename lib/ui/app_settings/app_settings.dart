@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_settings_ui/flutter_settings_ui.dart';
+import 'package:provider/provider.dart';
+import 'package:studyx/ui/theming/theme_provider.dart';
 
 class AppSettings extends StatelessWidget {
   const AppSettings({super.key});
@@ -18,8 +20,13 @@ class AppSettings extends StatelessWidget {
               SettingsTile.switchTile(
                 leading: const Icon(Icons.dark_mode),
                 initialValue: true,
-                onToggle: (bool value) {},
                 title: const Text('Enable Dark theme'),
+                onToggle: (bool isDarkMode) {
+                  final themeProvider = Provider.of(context, listen: false);
+                  themeProvider.setThemeMode(
+                    isDarkMode ? ThemeMode.dark : ThemeMode.light,
+                  );
+                },
               ),
             ],
           ),
