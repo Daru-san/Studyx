@@ -11,8 +11,8 @@ void main() {
 
 var currentTheme = ThemeData.dark(useMaterial3: true);
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class StudyxApp extends StatelessWidget {
+  const StudyxApp({super.key});
 
   @override
   Widget build(BuildContext context) {
