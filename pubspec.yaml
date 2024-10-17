@@ -10,6 +10,7 @@ dependencies:
   window_manager: ^0.2.8
   cupertino_icons: ^1.0.8
   flutter_settings_ui: ^3.0.0
+  provider: ^5.0.0
 dev_dependencies:
   flutter_test:
     sdk: flutter
