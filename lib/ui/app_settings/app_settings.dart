@@ -39,14 +39,19 @@ class _AppSettingsState extends State<AppSettings> {
             title: const Text('Theme'),
             tiles: [
               SettingsTile.switchTile(
-                leading: const Icon(Icons.dark_mode),
-                initialValue: true,
+                leading: switchIcon,
+                initialValue: isDark,
                 title: const Text('Enable Dark theme'),
-                onToggle: (bool isDarkMode) {
-                  final themeProvider = Provider.of(context, listen: false);
+                onToggle: (isDarkMode) {
+                  final themeProvider =
+                      Provider.of<ThemeProvider>(context, listen: false);
                   themeProvider.setThemeMode(
                     isDarkMode ? ThemeMode.dark : ThemeMode.light,
                   );
+                  setState(() {
+                    isDark = themeProvider.themeMode == ThemeMode.dark;
+                    switchIcon = getIcon(isDark);
+                  });
                 },
               ),
             ],
