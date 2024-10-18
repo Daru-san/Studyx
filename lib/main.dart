@@ -8,7 +8,7 @@ void main() {
   runApp(
     ChangeNotifierProvider(
       create: (context) => ThemeProvider(),
-      child:  const StudyxApp(),
+      child: const StudyxApp(),
     ),
   );
   windowManager.waitUntilReadyToShow().then((_) async {
@@ -18,9 +18,16 @@ void main() {
 
 var currentTheme = ThemeData.dark(useMaterial3: true);
 
-class StudyxApp extends StatelessWidget {
+class StudyxApp extends StatefulWidget {
   const StudyxApp({super.key});
 
+  @override
+  StudyxAppState createState() {
+    return StudyxAppState();
+  }
+}
+
+class StudyxAppState extends State<StudyxApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
