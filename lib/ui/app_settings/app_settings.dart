@@ -9,9 +9,15 @@ class AppSettings extends StatefulWidget {
   @override
   State<AppSettings> createState() => _AppSettingsState();
 }
+bool getThemeMode(BuildContext context) {
+  final themeProvider = Provider.of<ThemeProvider>(context, listen: false);
+  bool isDark = themeProvider.themeMode == ThemeMode.dark;
+  return isDark;
+}
 class _AppSettingsState extends State<AppSettings> {
   @override
   Widget build(BuildContext context) {
+    bool isDark = getThemeMode(context);
     return Scaffold(
       appBar: AppBar(
         title: const Text('Settings'),
