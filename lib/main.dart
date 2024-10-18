@@ -16,8 +16,6 @@ void main() {
   });
 }
 
-var currentTheme = ThemeData.dark(useMaterial3: true);
-
 class StudyxApp extends StatefulWidget {
   const StudyxApp({super.key});
 
@@ -33,8 +31,13 @@ class StudyxAppState extends State<StudyxApp> {
     return MaterialApp(
       title: 'Studyx',
       themeMode: Provider.of<ThemeProvider>(context).themeMode,
-      theme: ThemeData.light(),
-      darkTheme: ThemeData.dark(),
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
+        useMaterial3: true,
+      ),
+      darkTheme: ThemeData(
+        brightness: Brightness.dark,
+      ),
       home: const Dashboard(),
     );
   }
