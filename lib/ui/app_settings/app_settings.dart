@@ -26,12 +26,21 @@ Icon getIcon(bool isDark) {
   return switchIcon;
 }
 
+String getText(bool isDark) {
+  String text;
+  if (isDark) {
+    text = 'Disable dark theme';
+  } else {
+    text = 'Enable dark theme';
+  }
+  return text;
+}
 class _AppSettingsState extends State<AppSettings> {
   @override
   Widget build(BuildContext context) {
     bool isDark = getThemeMode(context);
     Icon switchIcon = getIcon(isDark);
-
+    Text switchLabel = Text(getText(isDark));
     return Scaffold(
       appBar: AppBar(
         title: const Text('Settings'),
@@ -44,7 +53,7 @@ class _AppSettingsState extends State<AppSettings> {
               SettingsTile.switchTile(
                 leading: switchIcon,
                 initialValue: isDark,
-                title: const Text('Enable Dark theme'),
+                title: switchLabel,
                 onToggle: (isDarkMode) {
                   final themeProvider =
                       Provider.of<ThemeProvider>(context, listen: false);
