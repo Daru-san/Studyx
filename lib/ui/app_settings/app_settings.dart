@@ -14,10 +14,21 @@ bool getThemeMode(BuildContext context) {
   bool isDark = themeProvider.themeMode == ThemeMode.dark;
   return isDark;
 }
+Icon getIcon(bool isDark) {
+  Icon switchIcon;
+  if (isDark) {
+    switchIcon = const Icon(Icons.light_mode);
+  } else {
+    switchIcon = const Icon(Icons.dark_mode);
+  }
+  return switchIcon;
+}
+
 class _AppSettingsState extends State<AppSettings> {
   @override
   Widget build(BuildContext context) {
     bool isDark = getThemeMode(context);
+    Icon switchIcon = getIcon(isDark);
     return Scaffold(
       appBar: AppBar(
         title: const Text('Settings'),
