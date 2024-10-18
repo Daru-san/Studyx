@@ -3,9 +3,13 @@ import 'package:flutter_settings_ui/flutter_settings_ui.dart';
 import 'package:provider/provider.dart';
 import 'package:studyx/ui/theming/theme_provider.dart';
 
-class AppSettings extends StatelessWidget {
+class AppSettings extends StatefulWidget {
   const AppSettings({super.key});
 
+  @override
+  State<AppSettings> createState() => _AppSettingsState();
+}
+class _AppSettingsState extends State<AppSettings> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
