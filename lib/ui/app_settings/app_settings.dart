@@ -12,7 +12,8 @@ class AppSettings extends StatefulWidget {
 
 bool getThemeMode(BuildContext context) {
   final themeProvider = Provider.of<ThemeProvider>(context, listen: false);
-  bool isDark = themeProvider.themeMode == ThemeMode.dark;
+  bool isDark = (themeProvider.themeMode == ThemeMode.dark) ||
+      (ThemeMode.system == ThemeMode.dark);
   return isDark;
 }
 
@@ -35,6 +36,7 @@ String getText(bool isDark) {
   }
   return text;
 }
+
 class _AppSettingsState extends State<AppSettings> {
   @override
   Widget build(BuildContext context) {
