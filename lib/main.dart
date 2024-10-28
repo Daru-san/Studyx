@@ -1,4 +1,5 @@
 import 'dart:io' show Platform;
+
 import 'package:flutter/material.dart';
 import 'package:studyx/ui/main_page/main_page.dart';
 import 'package:window_manager/window_manager.dart';
@@ -36,11 +37,12 @@ class StudyxAppState extends State<StudyxApp> {
       title: 'Studyx',
       themeMode: Provider.of<ThemeProvider>(context).themeMode,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
+        brightness: Brightness.light,
         useMaterial3: true,
       ),
       darkTheme: ThemeData(
         brightness: Brightness.dark,
+        useMaterial3: true,
       ),
       home: const MainPage(),
     );
