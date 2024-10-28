@@ -1,7 +1,7 @@
 import 'dart:io' show Platform;
 import 'package:flutter/material.dart';
+import 'package:studyx/ui/main_page/main_page.dart';
 import 'package:window_manager/window_manager.dart';
-import 'package:studyx/ui/dashboard/dashboard.dart';
 import 'package:studyx/ui/theming/theme_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -42,7 +42,7 @@ class StudyxAppState extends State<StudyxApp> {
       darkTheme: ThemeData(
         brightness: Brightness.dark,
       ),
-      home: const Dashboard(),
+      home: const MainPage(),
     );
   }
 }
