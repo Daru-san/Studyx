@@ -1,3 +1,4 @@
+import 'dart:io' show Platform;
 import 'package:flutter/material.dart';
 import 'package:window_manager/window_manager.dart';
 import 'package:studyx/ui/dashboard/dashboard.dart';
@@ -11,9 +12,12 @@ void main() {
       child: const StudyxApp(),
     ),
   );
-  windowManager.waitUntilReadyToShow().then((_) async {
-    await windowManager.setTitleBarStyle(TitleBarStyle.hidden);
-  });
+
+  if (Platform.isLinux) {
+    windowManager.waitUntilReadyToShow().then((_) async {
+      await windowManager.setTitleBarStyle(TitleBarStyle.hidden);
+    });
+  }
 }
 
 class StudyxApp extends StatefulWidget {
