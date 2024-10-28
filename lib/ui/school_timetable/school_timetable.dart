@@ -2,17 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 
-class SchoolTimetable extends StatelessWidget {
-  SchoolTimetable({super.key});
+class SchoolTimetable extends StatefulWidget {
+  const SchoolTimetable({super.key});
 
+  @override
+  State<SchoolTimetable> createState() => _SchoolTimetableState();
+}
+
+class _SchoolTimetableState extends State<SchoolTimetable> {
   final CalendarController _calendarController = CalendarController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('School Timetable'),
-      ),
       body: Center(
         child: SfCalendar(
           view: CalendarView.day,
