@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
 
-class StudyPlanner extends StatelessWidget {
+class StudyPlanner extends StatefulWidget {
   const StudyPlanner({super.key});
 
   @override
+  State<StudyPlanner> createState() {
+    return _StudyPlannerState();
+  }
+}
+
+class _StudyPlannerState extends State<StudyPlanner> {
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Study Planner'),
-      ),
       body: const Column(
         children: [
           Center(
-            //TODO: Only show this if there are no items added
             child: Text('Nothing to see here, add an item!'),
           ),
         ],
@@ -21,7 +24,8 @@ class StudyPlanner extends StatelessWidget {
         onPressed: () {},
         tooltip: 'Add Item',
         child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      ),
     );
   }
 }
+
