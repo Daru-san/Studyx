@@ -148,6 +148,12 @@ class _MainPageState extends State<MainPage> {
                 //_launchURL('https://github.com/Daru-san/Studyx');
               },
             ),
+            ListTile(
+              leading: const Icon(Icons.android),
+              title: const Text('v0.1-Alpha'),
+              subtitle: const Text('Early development version'),
+              onTap: () {},
+            ),
           ],
         ),
       ),
