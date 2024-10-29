@@ -12,6 +12,9 @@ dependencies:
   flutter_settings_ui: ^3.0.0
   provider: ^5.0.0
   syncfusion_flutter_calendar: ^27.1.55
+  shared_preferences: ^2.3.2
+  animated_theme_switcher: ^2.0.10
+  syncfusion_flutter_datepicker: any
 dev_dependencies:
   flutter_test:
     sdk: flutter
