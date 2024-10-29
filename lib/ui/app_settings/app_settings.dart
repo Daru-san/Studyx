@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_settings_ui/flutter_settings_ui.dart';
-import 'package:provider/provider.dart';
-import 'package:studyx/ui/theming/theme_provider.dart';
+import 'package:animated_theme_switcher/animated_theme_switcher.dart';
+import 'package:studyx/theme/theme_service.dart';
 
 class AppSettings extends StatefulWidget {
   const AppSettings({super.key});
@@ -10,39 +10,32 @@ class AppSettings extends StatefulWidget {
   State<AppSettings> createState() => _AppSettingsState();
 }
 
-bool getThemeMode(BuildContext context) {
-  final themeProvider = Provider.of<ThemeProvider>(context, listen: false);
-  bool isDark = (themeProvider.themeMode == ThemeMode.dark) ||
-      (ThemeMode.system == ThemeMode.dark);
-  return isDark;
-}
-
-Icon getIcon(bool isDark) {
-  Icon switchIcon;
-  if (isDark) {
-    switchIcon = const Icon(Icons.light_mode);
-  } else {
-    switchIcon = const Icon(Icons.dark_mode);
-  }
-  return switchIcon;
-}
-
-String getText(bool isDark) {
-  String text;
-  if (isDark) {
-    text = 'Disable dark theme';
-  } else {
-    text = 'Enable dark theme';
-  }
-  return text;
-}
-
 class _AppSettingsState extends State<AppSettings> {
+  bool isDark = false;
+  void getTheme() async {
+    final service = await ThemeService.instance;
+    isDark = service.currentThemeName == 'dark';
+  }
+
+  bool getDarkTheme() {
+    getTheme();
+    return isDark;
+  }
+
+  String getDarkLabel(isDark) {
+    String text;
+    if (isDark) {
+      text = 'Disable dark theme';
+    } else {
+      text = 'Enable dark theme';
+    }
+    return text;
+  }
+
   @override
   Widget build(BuildContext context) {
-    bool isDark = getThemeMode(context);
-    Icon switchIcon = getIcon(isDark);
-    Text switchLabel = Text(getText(isDark));
+    bool isThemeDark = getDarkTheme();
+    String darkLabel = getDarkLabel(isThemeDark);
     return Scaffold(
       appBar: AppBar(
         title: const Text('Settings'),
@@ -52,22 +45,30 @@ class _AppSettingsState extends State<AppSettings> {
           SettingsSection(
             title: const Text('Theme'),
             tiles: [
-              SettingsTile.switchTile(
-                leading: switchIcon,
-                initialValue: isDark,
-                title: switchLabel,
-                onToggle: (isDarkMode) {
-                  final themeProvider =
-                      Provider.of<ThemeProvider>(context, listen: false);
-                  themeProvider.setThemeMode(
-                    isDarkMode ? ThemeMode.dark : ThemeMode.light,
-                  );
-                  setState(() {
-                    isDark = themeProvider.themeMode == ThemeMode.dark;
-                    switchIcon = getIcon(isDark);
-                  });
-                },
-              ),
+              CustomSettingsTile(
+                child: ThemeSwitcher(
+                  builder: (context) {
+                    return SwitchListTile(
+                      value: isThemeDark,
+                      onChanged: (value) async {
+                        final themeSwitcher = ThemeSwitcher.of(context);
+                        final themeName = value ? 'dark' : 'light';
+                        final service = await ThemeService.instance
+                          ..save(themeName);
+                        final theme = service.getByName(themeName);
+                        themeSwitcher.changeTheme(theme: theme);
+
+                        getTheme();
+                        setState(() {
+                          isThemeDark = themeName == 'dark';
+                          darkLabel = getDarkLabel(isDark);
+                        });
+                      },
+                      title: Text(darkLabel),
+                    );
+                  },
+                ),
+              )
             ],
           ),
           SettingsSection(
