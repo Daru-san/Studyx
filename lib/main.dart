@@ -1,17 +1,19 @@
 import 'dart:io' show Platform;
-
 import 'package:flutter/material.dart';
 import 'package:studyx/ui/main_page/main_page.dart';
+import './theme/theme_service.dart';
+import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 import 'package:window_manager/window_manager.dart';
-import 'package:studyx/ui/theming/theme_provider.dart';
-import 'package:provider/provider.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  final themeService = await ThemeService.instance;
+
+  var initTheme = themeService.initial;
+
   runApp(
-    ChangeNotifierProvider(
-      create: (context) => ThemeProvider(),
-      child: const StudyxApp(),
-    ),
+    StudyxApp(theme: initTheme),
   );
 
   if (Platform.isLinux) {
@@ -21,30 +23,24 @@ void main() {
   }
 }
 
-class StudyxApp extends StatefulWidget {
-  const StudyxApp({super.key});
+class StudyxApp extends StatelessWidget {
+  const StudyxApp({
+    super.key,
+    required this.theme,
+  });
+  final ThemeData theme;
 
-  @override
-  StudyxAppState createState() {
-    return StudyxAppState();
-  }
-}
-
-class StudyxAppState extends State<StudyxApp> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Studyx',
-      themeMode: Provider.of<ThemeProvider>(context).themeMode,
-      theme: ThemeData(
-        brightness: Brightness.light,
-        useMaterial3: true,
-      ),
-      darkTheme: ThemeData(
-        brightness: Brightness.dark,
-        useMaterial3: true,
-      ),
-      home: const MainPage(),
+    return ThemeProvider(
+      initTheme: theme,
+      builder: (_, theme) {
+        return MaterialApp(
+          title: 'Studyx',
+          theme: theme,
+          home: const MainPage(),
+        );
+      },
     );
   }
 }
