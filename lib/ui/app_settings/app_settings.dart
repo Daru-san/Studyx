@@ -32,10 +32,21 @@ class _AppSettingsState extends State<AppSettings> {
     return text;
   }
 
+  Icon getDarkIcon(isDark) {
+    Icon themeIcon;
+    if (isDark) {
+      themeIcon = const Icon(Icons.dark_mode);
+    } else {
+      themeIcon = const Icon(Icons.light_mode);
+    }
+    return themeIcon;
+  }
+
   @override
   Widget build(BuildContext context) {
     bool isThemeDark = getDarkTheme();
     String darkLabel = getDarkLabel(isThemeDark);
+    Icon themeIcon = getDarkIcon(isThemeDark);
     return Scaffold(
       appBar: AppBar(
         title: const Text('Settings'),
@@ -62,9 +73,21 @@ class _AppSettingsState extends State<AppSettings> {
                         setState(() {
                           isThemeDark = themeName == 'dark';
                           darkLabel = getDarkLabel(isDark);
+                          themeIcon = getDarkIcon(isDark);
                         });
                       },
-                      title: Text(darkLabel),
+                      title: RichText(
+                        text: TextSpan(
+                          children: [
+                            WidgetSpan(
+                              child: themeIcon,
+                            ),
+                            WidgetSpan(
+                              child: Text(darkLabel),
+                            )
+                          ],
+                        ),
+                      ),
                     );
                   },
                 ),
