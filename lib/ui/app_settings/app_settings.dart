@@ -59,7 +59,7 @@ class _AppSettingsState extends State<AppSettings> {
               CustomSettingsTile(
                 child: ThemeSwitcher(
                   builder: (context) {
-                    return SwitchListTile(
+                    return SwitchListTile.adaptive(
                       value: isThemeDark,
                       onChanged: (value) async {
                         final themeSwitcher = ThemeSwitcher.of(context);
