@@ -1,3 +1,5 @@
+<!--markdownlint-disable MD047-->
+
 # Studyx _(Early development)_
 
 > Study taken to the next level
@@ -18,7 +20,7 @@ distant dream right now.
 Right now we are at a very early alpha planning phase,
 I hope to expand as time goes on though.
 I am really new to android app development and flutter,
-so  this will definitely be a challenge. I can't wait!
+so this will definitely be a challenge. I can't wait!
 
 ## Planned features
 
@@ -50,8 +52,13 @@ so  this will definitely be a challenge. I can't wait!
     - [ ] View study material
 - [ ] Potential features
   - [ ] Data saving/backup/syncing
+    - [ ] Data saving via JSON or SQL
+    - [ ] Data backup to local file
+    - [ ] Save to some web server/service?
   - [ ] Settings
-  - [ ] Themes
+  - [x] Themes
+    - [ ] Theme changing
+    - [ ] Custom themes (maybe)
   - [ ] Plugins
 
 ## Why?
