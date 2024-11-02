@@ -1,0 +1,47 @@
+{
+  "lessonLength": "50",
+  "schedule": [
+    {
+      "subject": "English",
+      "teacher": "Who knows",
+      "days": [
+        {
+          "day": "Monday",
+          "startTime": "7:50",
+          "endTime": "8:40"
+        },
+        {
+          "day": "Tuesday",
+          "startTime": "14:05",
+          "endTime": "14:50"
+        },
+        {
+          "day": "Wednesday",
+          "startTime": "9:50",
+          "endTime": "10:40"
+        },
+        {
+          "day": "Friday",
+          "startTime": "11:30",
+          "endTime": "12:20"
+        }
+      ]
+    },
+    {
+      "subject": "Math",
+      "teacher": "Zoroark",
+      "days": [
+        {
+          "day": "Monday",
+          "startTime": "8:40",
+          "endTime": "9:30"
+        },
+        {
+          "day": "Tuesday",
+          "startTime": "11:00",
+          "endTime": "11:50"
+        }
+      ]
+    }
+  ]
+}
