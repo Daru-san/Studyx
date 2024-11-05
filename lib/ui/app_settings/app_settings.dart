@@ -95,6 +95,22 @@ class _AppSettingsState extends State<AppSettings> {
             ],
           ),
           SettingsSection(
+            title: const Text('Timetable'),
+            tiles: [
+              SettingsTile.navigation(
+                title: const Text('Settings'),
+                onPressed: (context) {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const TimetableSettings(),
+                    ),
+                  );
+                },
+              )
+            ],
+          ),
+          SettingsSection(
             title: const Text('Advanced'),
             tiles: [
               SettingsTile(
@@ -113,6 +129,25 @@ class _AppSettingsState extends State<AppSettings> {
               ),
             ],
           ),
+        ],
+      ),
+    );
+  }
+}
+
+class TimetableSettings extends StatelessWidget {
+  const TimetableSettings({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: SettingsList(
+        sections: [
+          SettingsSection(title: const Text('Data'), tiles: []),
+          SettingsSection(
+            title: const Text('Appearance'),
+            tiles: [],
+          )
         ],
       ),
     );
