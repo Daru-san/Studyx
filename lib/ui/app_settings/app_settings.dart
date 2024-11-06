@@ -143,10 +143,23 @@ class TimetableSettings extends StatelessWidget {
     return Scaffold(
       body: SettingsList(
         sections: [
-          SettingsSection(title: const Text('Data'), tiles: []),
+          SettingsSection(
+            title: const Text('Data'),
+            tiles: [
+              SettingsTile(
+                title: const Text('Autosave'),
+                onPressed: (context) {},
+              ),
+            ],
+          ),
           SettingsSection(
             title: const Text('Appearance'),
-            tiles: [],
+            tiles: [
+              SettingsTile(
+                title: const Text('Block sizes'),
+                onPressed: (context) {},
+              )
+            ],
           )
         ],
       ),
