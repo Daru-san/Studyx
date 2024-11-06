@@ -7,6 +7,8 @@ import 'package:window_manager/window_manager.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
+var appDatabase;
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -21,6 +23,8 @@ void main() async {
     },
     version: 1,
   );
+
+  appDatabase = database;
 
   final themeService = await ThemeService.instance;
 
