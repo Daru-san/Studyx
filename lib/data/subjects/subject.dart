@@ -25,7 +25,7 @@ class Subject {
 }
 
 Future<void> insertSubject(Subject subject){
-  final db = await database;
+  final db = await appDatabase;
 
   await db.insert(
   'subjects',
