@@ -65,7 +65,6 @@
           buildInputs = with pkgs; [
             flutter
             jdk17
-            android-studio
             androidSdk
           ];
         };
