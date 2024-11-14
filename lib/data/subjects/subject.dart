@@ -6,15 +6,16 @@ class Subject {
   final String teacher;
   final DateTime startTime;
   final DateTime endTime;
-  final DateTime room;
+  final String room;
 
-  Subject(
-      {required this.name,
-      required this.id,
-      required this.teacher,
-      required this.room,
-      required this.startTime,
-      required this.endTime,});
+  Subject({
+    required this.name,
+    required this.id,
+    required this.teacher,
+    required this.room,
+    required this.startTime,
+    required this.endTime,
+  });
 
   Map<String, dynamic> toMap() {
     return {
@@ -22,18 +23,20 @@ class Subject {
       'name': name,
       'teacher': teacher,
       'room': room,
-      'startTime':startTime,
-      'endTime':endTime,
+      'startTime': startTime,
+      'endTime': endTime,
     };
   }
 
-  static Subject fromMap(<String,dynamic> map) {
-    return Subject (
-      id: map['id'],
-      name: Map()
-    );
-  }
-
+  static const tableName = "subject_table";
+  static const colums = [
+    "id",
+    "name",
+    "teacher",
+    "room",
+    "start_time",
+    "end_time",
+  ];
   @override
   String toString() {
     return ('Subject{id: $id, name: $name, teacher: $teacher}');
