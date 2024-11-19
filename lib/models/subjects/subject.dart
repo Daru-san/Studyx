@@ -1,5 +1,3 @@
-import 'package:sqflite/sqflite.dart';
-
 class Subject {
   final int id;
   final String name;
