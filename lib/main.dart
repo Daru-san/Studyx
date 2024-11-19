@@ -1,30 +1,17 @@
 import 'dart:io' show Platform;
 import 'package:flutter/material.dart';
+import 'package:studyx/models/database/database_helper.dart';
 import 'package:studyx/ui/main_page/main_page.dart';
 import './theme/theme_service.dart';
 import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 import 'package:window_manager/window_manager.dart';
-import 'package:path/path.dart';
-import 'package:sqflite/sqflite.dart';
 
-var appDatabase;
+DatabaseHelper appDatabase = DatabaseHelper();
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  //TODO: Flesh out database stuff
-  // maybe using rust could work too....
-  final database = openDatabase(
-    join(await getDatabasesPath(), 'studybase.db'),
-    onCreate: (db, version) {
-      return db.execute(
-        'CRATE TABLE subjects(id INTEGER PRIMARY KEY, name TEXT,teacher TEXT)',
-      );
-    },
-    version: 1,
-  );
-
-  appDatabase = database;
+  appDatabase.initializeDatabase();
 
   final themeService = await ThemeService.instance;
 
