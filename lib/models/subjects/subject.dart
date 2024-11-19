@@ -26,6 +26,28 @@ class Subject {
     };
   }
 
+  factory Subject.fromMap(Map<String, dynamic> map) {
+    return switch (map) {
+      {
+        'id': int id,
+        'name': String name,
+        'teacher': String teacher,
+        'room': String room,
+        'startTime': DateTime startTime,
+        'endTime': DateTime endTime
+      } =>
+        Subject(
+          id: id,
+          name: name,
+          teacher: teacher,
+          room: room,
+          startTime: startTime,
+          endTime: endTime,
+        ),
+      _ => throw Exception('Failed to convert timetable'),
+    };
+  }
+
   static const tableName = "subject_table";
   static const colums = [
     "id",

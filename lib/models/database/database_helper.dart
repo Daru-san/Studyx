@@ -84,7 +84,7 @@ class DatabaseHelper {
     int count = subjectMapList.length;
     List<Subject> subjectList = [];
     for (int i = 0; i < count; i++) {
-      subjectList.add(Subject.fromMapObject(subjectMapList[i]));
+      subjectList.add(Subject.fromMap(subjectMapList[i]));
     }
     return subjectList;
   }
