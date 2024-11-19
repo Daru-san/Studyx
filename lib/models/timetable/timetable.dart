@@ -1,5 +1,5 @@
-import 'package:studyx/data/subjects/subject.dart';
 import 'package:studyx/main.dart';
+import '../subjects/subject.dart';
 
 //TODO: Save in a database
 class Timetable {
@@ -17,17 +17,12 @@ class Timetable {
   // This will have to be done hierarchically, with a bit more stuff
   // like `final lessonLegth = json['lessonLegth']`
   // Then some way to search through the array of subjects on days
-  Map<String,Object?> toMap() {
-    return {
-    'startTime': startTime,
-    'endTime': endTime,
-    'subject': subject
-    };
+  Map<String, Object?> toMap() {
+    return {'startTime': startTime, 'endTime': endTime, 'subject': subject};
   }
-  Future<Void> insertTimetable(Timetable timetable){
-    final db = await appDatabase;
 
-    await db.insert('timetable',)
+  insertTimetable(Timetable timetable) async {
+    // await appDatabase.;
   }
 }
 
