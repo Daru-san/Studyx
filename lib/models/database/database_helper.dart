@@ -1,8 +1,8 @@
 import 'dart:io';
 
 import 'package:sqflite/sqflite.dart';
-import 'package:studyx/data/subjects/subject.dart';
 import 'package:path_provider/path_provider.dart';
+import '../subjects/subject.dart';
 
 class DatabaseHelper {
   static Database _database;
@@ -17,11 +17,11 @@ class DatabaseHelper {
   static String colroom = Subject.colums[3];
 
   factory DatabaseHelper() {
-    _databaseHelper ??= DatabaseHelper._createInstance();
+    _databaseHelper = DatabaseHelper._createInstance();
     return _databaseHelper;
   }
   Future<Database> get database async {
-    _database ??= await initializeDatabase();
+    _database = await initializeDatabase();
     return _database;
   }
 
@@ -75,14 +75,14 @@ class DatabaseHelper {
     Database db = await database;
     List<Map<String, dynamic>> x =
         await db.rawQuery("SELECT COUNT (*) from $subjectTable");
-    int result = Sqflite.firstIntValue(x);
+    int result = Sqflite.firstIntValue(x)!;
     return result;
   }
 
   Future<List<Subject>> getSubjectList() async {
     var subjectMapList = await getSubjectMapList();
     int count = subjectMapList.length;
-    List<Subject> subjectList = List<Subject>();
+    List<Subject> subjectList = [];
     for (int i = 0; i < count; i++) {
       subjectList.add(Subject.fromMapObject(subjectMapList[i]));
     }
