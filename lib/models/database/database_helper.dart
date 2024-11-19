@@ -5,8 +5,9 @@ import 'package:path_provider/path_provider.dart';
 import '../subjects/subject.dart';
 
 class DatabaseHelper {
-  static Database _database;
-  static DatabaseHelper _databaseHelper;
+  // ignore: prefer_typing_uninitialized_variables
+  var _database;
+
   DatabaseHelper._createInstance();
 
   static String subjectTable = Subject.tableName;
@@ -16,10 +17,8 @@ class DatabaseHelper {
   static String colteacher = Subject.colums[2];
   static String colroom = Subject.colums[3];
 
-  factory DatabaseHelper() {
-    _databaseHelper = DatabaseHelper._createInstance();
-    return _databaseHelper;
-  }
+  factory DatabaseHelper() => DatabaseHelper._createInstance();
+
   Future<Database> get database async {
     _database = await initializeDatabase();
     return _database;
@@ -27,10 +26,13 @@ class DatabaseHelper {
 
   Future<Database> initializeDatabase() async {
     Directory directory = await getApplicationDocumentsDirectory();
-    String path = "${directory.path}subject.db";
+    String path = "${directory.path}/studyx.db";
 
-    var subjectDatabase =
-        await openDatabase(path, version: 1, onCreate: _createDB);
+    var subjectDatabase = await openDatabase(
+      path,
+      version: 1,
+      onCreate: _createDB,
+    );
     return subjectDatabase;
   }
 
