@@ -54,6 +54,8 @@ class _DashboardState extends State<Dashboard> {
                   tileColor: Theme.of(context).colorScheme.tertiaryContainer,
                 ),
                 ListView.builder(
+                  shrinkWrap: true,
+                  scrollDirection: Axis.vertical,
                   itemBuilder: (context, index) {
                     return ListTile(
                       title: Text(subjectsList[index].name),
