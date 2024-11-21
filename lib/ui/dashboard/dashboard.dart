@@ -10,7 +10,32 @@ class Dashboard extends StatefulWidget {
 }
 
 class _DashboardState extends State<Dashboard> {
-  List<Subject> subjectsList = [];
+  List<Subject> subjectsList = [
+    Subject(
+      name: 'English',
+      id: 11,
+      teacher: 'Mr Who',
+      room: '45',
+      startTime: DateTime.now(),
+      endTime: DateTime.now(),
+    ),
+    Subject(
+      name: 'Math',
+      id: 13,
+      teacher: 'Ms Who',
+      room: '41',
+      startTime: DateTime.now(),
+      endTime: DateTime.now(),
+    ),
+    Subject(
+      name: 'Phyics',
+      id: 32,
+      teacher: 'Who is WHO',
+      room: '1000',
+      startTime: DateTime.now(),
+      endTime: DateTime.now(),
+    ),
+  ];
 
   @override
   Widget build(BuildContext context) {
