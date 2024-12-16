@@ -60,7 +60,7 @@
         devShells.default = pkgs.mkShell {
           ANDROID_AVD_HOME = (toString ./.) + "./android/avd";
           FLUTTER_SDK = "${pkgs.flutter.unwrapped}";
-          JAVA_HOME = pkgs.jdk17;
+          JAVA_HOME = pkgs.jdk17.outPath;
           GRADLE_OPTS = "-Dorg.gradle.project.android.aapt2FromMavenOverride=${androidSdk}/libexec/android-sdk/build-tools/${buildToolsVersion}/aapt2";
           buildInputs = with pkgs; [
             flutter
