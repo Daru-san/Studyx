@@ -8,6 +8,7 @@ class SubjectView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(title: Text(subject.name,),),
       bottomSheet: BottomAppBar(
         child: TextButton(
           onPressed: () {
