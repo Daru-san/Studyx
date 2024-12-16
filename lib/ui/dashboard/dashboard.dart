@@ -60,6 +60,7 @@ class _DashboardState extends State<Dashboard> {
                   itemBuilder: (context, index) {
                     return ListTile(
                       title: Text(subjectsList[index].name),
+                      subtitle: Text(subjectsList[index].teacher),
                       isThreeLine: true,
                       onTap: () {
                         Navigator.push(
