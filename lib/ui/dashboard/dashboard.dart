@@ -56,6 +56,7 @@ class _DashboardState extends State<Dashboard> {
                 ListView.builder(
                   shrinkWrap: true,
                   scrollDirection: Axis.vertical,
+                  itemCount: subjectsList.length,
                   itemBuilder: (context, index) {
                     return ListTile(
                       title: Text(subjectsList[index].name),
