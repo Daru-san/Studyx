@@ -5,6 +5,7 @@ import 'package:studyx/ui/exam_timetable/exam_timetable.dart';
 import 'package:studyx/ui/school_timetable/school_timetable.dart';
 import 'package:studyx/ui/study_planner/study_planner.dart';
 import 'package:studyx/ui/dashboard/dashboard.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
@@ -146,9 +147,7 @@ class _MainPageState extends State<MainPage> {
                 leading: const Icon(Icons.code),
                 title: const Text('Source code'),
                 subtitle: const Text('https://github.com/Daru-san/Studyx'),
-                onTap: () {
-                  //_launchURL('https://github.com/Daru-san/Studyx');
-                },
+                onTap: () => launchUrl(Uri.parse("https://github.com/Daru-san/Studyx"),),
               ),
               ListTile(
                 leading: const Icon(Icons.android),
